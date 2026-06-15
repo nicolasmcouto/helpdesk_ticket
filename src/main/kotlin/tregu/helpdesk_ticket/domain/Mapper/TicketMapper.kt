@@ -3,13 +3,13 @@ package tregu.helpdesk_ticket.domain.Mapper
 import tregu.helpdesk_ticket.domain.Entity.TicketEntity
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.domain.dto.TicketDetail
-import tregu.helpdesk_ticket.domain.dto.createTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketResponse
+import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
+import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
 
 object TicketMapper {
 
     fun toEntity(
-        request: createTicketRequest,
+        request: CreateTicketRequest,
         author: String,
         priority: TicketPriority,
         category: String
@@ -23,8 +23,8 @@ object TicketMapper {
         return entity
     }
 
-    fun toResponse(entity: TicketEntity): createTicketResponse {
-        return createTicketResponse(
+    fun toResponse(entity: TicketEntity): CreateTicketResponse {
+        return CreateTicketResponse(
             id = entity.id!!,
             title = entity.title,
             description = entity.description,

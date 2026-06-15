@@ -1,11 +1,10 @@
 package tregu.helpdesk_ticket.domain.dto
 
-import jdk.jfr.Description
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.domain.Enum.TicketStatus
 import java.time.OffsetDateTime
 
-data class createTicketResponse(
+data class CreateTicketResponse(
     val id: Long,
     val title: String,
     val description: String,

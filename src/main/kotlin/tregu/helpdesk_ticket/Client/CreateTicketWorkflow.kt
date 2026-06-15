@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component
 import tools.jackson.databind.ObjectMapper
 import tregu.helpdesk_ticket.Service.TicketService
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.dto.createTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketResponse
+import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
+import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
 
 data class ClassificationResult(
     val priority: TicketPriority,
@@ -27,7 +27,7 @@ class CreateTicketWorkflow(
 
     }
 
-     suspend fun execute(request: createTicketRequest, author: String): createTicketResponse {
+     suspend fun execute(request: CreateTicketRequest, author: String): CreateTicketResponse {
         val classification = classify(request.title, request.description)
         return ticketService.create(request, author, classification)
     }

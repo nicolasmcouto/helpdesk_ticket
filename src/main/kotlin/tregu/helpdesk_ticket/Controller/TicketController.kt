@@ -5,13 +5,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import tregu.helpdesk_ticket.Client.CreateTicketWorkflow
 import tregu.helpdesk_ticket.Service.TicketService
-import tregu.helpdesk_ticket.domain.Entity.TicketEntity
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.domain.Enum.TicketStatus
 import tregu.helpdesk_ticket.domain.dto.TicketDetail
 import tregu.helpdesk_ticket.domain.dto.UpdateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketResponse
+import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
+import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
 
 @RestController
 @RequestMapping("ticket")
@@ -22,8 +21,8 @@ class TicketController(
 
     @PostMapping
     suspend fun createTicket(
-        @RequestBody request: createTicketRequest, @RequestHeader("X-Author") author: String
-    ): ResponseEntity<createTicketResponse> {
+        @RequestBody request: CreateTicketRequest, @RequestHeader("X-Author") author: String
+    ): ResponseEntity<CreateTicketResponse> {
         val response = workflow.execute(request, author)
         return ResponseEntity.status(HttpStatus.CREATED).body(response)
     }

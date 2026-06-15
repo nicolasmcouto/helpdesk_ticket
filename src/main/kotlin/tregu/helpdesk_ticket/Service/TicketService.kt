@@ -11,18 +11,18 @@ import tregu.helpdesk_ticket.domain.Mapper.TicketMapper
 import tregu.helpdesk_ticket.domain.Repository.TicketRepository
 import tregu.helpdesk_ticket.domain.dto.TicketDetail
 import tregu.helpdesk_ticket.domain.dto.UpdateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketRequest
-import tregu.helpdesk_ticket.domain.dto.createTicketResponse
+import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
+import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
 
 @Service
 class TicketService(
     private val ticketRepository: TicketRepository,
 ) {
     suspend fun create(
-        request: createTicketRequest,
+        request: CreateTicketRequest,
         author: String,
         classification: ClassificationResult
-    ): createTicketResponse {
+    ): CreateTicketResponse {
         val ticket = TicketEntity()
         ticket.title = request.title
         ticket.description = request.description
