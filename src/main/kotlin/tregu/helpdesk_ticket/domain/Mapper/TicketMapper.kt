@@ -1,0 +1,62 @@
+package tregu.helpdesk_ticket.domain.Mapper
+
+import tregu.helpdesk_ticket.domain.Entity.TicketEntity
+import tregu.helpdesk_ticket.domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.domain.dto.TicketDetail
+import tregu.helpdesk_ticket.domain.dto.createTicketRequest
+import tregu.helpdesk_ticket.domain.dto.createTicketResponse
+
+object TicketMapper {
+
+    fun toEntity(
+        request: createTicketRequest,
+        author: String,
+        priority: TicketPriority,
+        category: String
+    ): TicketEntity {
+        val entity = TicketEntity()
+        entity.title = request.title
+        entity.description = request.description
+        entity.createdBy = author
+        entity.priority = priority
+        entity.category = category
+        return entity
+    }
+
+    fun toResponse(entity: TicketEntity): createTicketResponse {
+        return createTicketResponse(
+            id = entity.id!!,
+            title = entity.title,
+            description = entity.description,
+            status = entity.status,
+            priority = entity.priority ?: TicketPriority.MEDIUM,
+            category = entity.category ?: "uncategorized",
+            createBy = entity.createdBy,
+            assignedTo = entity.assignedTo,
+            escalated = entity.escalated,
+            createdAt = entity.createdAt!!,
+            updatedAt = entity.updatedAt!!
+        )
+    }
+
+    fun toDetail(entity: TicketEntity): TicketDetail {
+        return TicketDetail(
+            id = entity.id!!,
+            title = entity.title,
+            description = entity.description,
+            status = entity.status,
+            priority = entity.priority!!,
+            category = entity.category,
+            createdBy = entity.createdBy,
+            assignedTo = entity.assignedTo,
+            escalated = entity.escalated,
+            escalatedAt = entity.escalatedAt,
+            escalationSummary = entity.escalationSummary,
+            tags = entity.tags.toList(),
+            comments = entity.comments.toList(),
+            createdAt = entity.createdAt!!,
+            updatedAt = entity.updatedAt!!,
+            resolvedAt = entity.resolvedAt
+        )
+    }
+}
