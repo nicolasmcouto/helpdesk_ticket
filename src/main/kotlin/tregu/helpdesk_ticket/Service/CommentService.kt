@@ -19,9 +19,8 @@ class CommentService(
 
     suspend fun create(request: CreateCommentRequest): CommentResponse{
         return withContext(Dispatchers.IO) {
-            val ticket = ticketRepository.findById(request.ticketId).getOrNull()
             val newComment = CommentEntity()
-            newComment.ticket = ticket
+            newComment.ticketId = request.ticketId
             newComment.author = request.author
             newComment.content = request.content
 

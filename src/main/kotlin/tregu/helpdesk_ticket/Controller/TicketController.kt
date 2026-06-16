@@ -3,7 +3,7 @@ package tregu.helpdesk_ticket.Controller
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import tregu.helpdesk_ticket.Client.CreateTicketWorkflow
+import tregu.helpdesk_ticket.Workflow.CreateTicketWorkflow
 import tregu.helpdesk_ticket.Service.TicketService
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.domain.Enum.TicketStatus
@@ -16,14 +16,14 @@ import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
 @RequestMapping("ticket")
 class TicketController(
     private val ticketService: TicketService,
-    private val workflow: CreateTicketWorkflow
+    private val ticketWorkflow: CreateTicketWorkflow
 ) {
 
     @PostMapping
     suspend fun createTicket(
         @RequestBody request: CreateTicketRequest, @RequestHeader("X-Author") author: String
     ): ResponseEntity<CreateTicketResponse> {
-        val response = workflow.execute(request, author)
+        val response = ticketWorkflow.execute(request, author)
         return ResponseEntity.status(HttpStatus.CREATED).body(response)
     }
 

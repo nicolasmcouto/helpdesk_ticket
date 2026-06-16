@@ -1,4 +1,4 @@
-package tregu.helpdesk_ticket.Client
+package tregu.helpdesk_ticket.Llm
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

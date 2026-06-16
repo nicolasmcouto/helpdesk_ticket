@@ -1,35 +1,19 @@
-package tregu.helpdesk_ticket.Client
+package tregu.helpdesk_ticket.Service
 
-
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import tools.jackson.databind.ObjectMapper
-import tregu.helpdesk_ticket.Service.TicketService
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
+import tregu.helpdesk_ticket.Llm.LlmClient
+import tregu.helpdesk_ticket.Workflow.Dto.ClassificationResult
 
-data class ClassificationResult(
-    val priority: TicketPriority,
-    val category: String
-)
-
-@Component
-class CreateTicketWorkflow(
+@Service
+class LlmService(
     private val llmClient: LlmClient,
-    private val ticketService: TicketService,
-    private val objectMapper: ObjectMapper
-) {
+    private val objectMapper: ObjectMapper) {
 
-
-    private suspend fun classify(title: String, description: String): ClassificationResult {
+     suspend fun classify(title: String, description: String): ClassificationResult {
         val json = llmClient.complete(SYSTEM_PROMPT, "title: $title\ndescription: $description")
         return objectMapper.readValue(json, ClassificationResult::class.java)
 
-    }
-
-     suspend fun execute(request: CreateTicketRequest, author: String): CreateTicketResponse {
-        val classification = classify(request.title, request.description)
-        return ticketService.create(request, author, classification)
     }
 
     companion object {

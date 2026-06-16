@@ -1,4 +1,4 @@
-package tregu.helpdesk_ticket.Client
+package tregu.helpdesk_ticket.Llm
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

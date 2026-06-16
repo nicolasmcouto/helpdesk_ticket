@@ -16,7 +16,7 @@ class CommentEntity {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id", nullable = false)
-    var ticket: TicketEntity? = null
+    var ticketId: TicketEntity? = null
 
     @Column(nullable = false)
     var author: String = ""

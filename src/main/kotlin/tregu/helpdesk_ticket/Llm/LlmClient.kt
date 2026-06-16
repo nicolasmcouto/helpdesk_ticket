@@ -1,26 +1,14 @@
-package tregu.helpdesk_ticket.Client
+package tregu.helpdesk_ticket.Llm
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody
+import tregu.helpdesk_ticket.Llm.Dto.ChatCompletionRequest
+import tregu.helpdesk_ticket.Llm.Dto.ChatCompletionResponse
+import tregu.helpdesk_ticket.Llm.Dto.ChatMessage
 
-data class ChatCompletionRequest(
-    val model: String,
-    val messages: List<ChatMessage>
-)
-
-data class ChatMessage(
-    val role: String,
-    val content: String
-)
-
-data class ChatCompletionResponse(
-    val choices: List<Choice>
-) {
-    data class Choice(val message: ChatMessage)
-}
 
 @Component
 class LlmClient(

@@ -3,7 +3,7 @@ package tregu.helpdesk_ticket.Service
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.springframework.stereotype.Service
-import tregu.helpdesk_ticket.Client.ClassificationResult
+import tregu.helpdesk_ticket.Workflow.Dto.ClassificationResult
 import tregu.helpdesk_ticket.domain.Entity.TicketEntity
 import tregu.helpdesk_ticket.domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.domain.Enum.TicketStatus
@@ -58,7 +58,7 @@ class TicketService(
         return response.map { entity -> TicketMapper.toDetail(entity) }
     }
 
-    suspend fun ticketUpdate(id: Long,update: UpdateTicketRequest): TicketDetail? {
+    suspend fun ticketUpdate(id: Long, update: UpdateTicketRequest): TicketDetail? {
             return withContext(Dispatchers.IO){
                 val ticket = ticketRepository.findById(id).orElse(null)
 

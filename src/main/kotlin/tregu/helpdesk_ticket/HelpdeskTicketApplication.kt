@@ -3,7 +3,7 @@ package tregu.helpdesk_ticket
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
-import tregu.helpdesk_ticket.Client.LlmProperties
+import tregu.helpdesk_ticket.Llm.LlmProperties
 
 @EnableConfigurationProperties(LlmProperties::class)
 @SpringBootApplication

@@ -10,7 +10,7 @@ object CommentMapper {
         val comment = CommentEntity()
         comment.content = request.content
         comment.author = author
-        comment.ticket = ticketId
+        comment.ticketId = ticketId
         return comment
     }
 
@@ -18,7 +18,7 @@ object CommentMapper {
         return CommentResponse(
             id = entity.id!!,
             content = entity.content,
-            ticketId = entity.ticket?.id!!,
+            ticketId = entity.ticketId?.id!!,
             author = entity.author,
             createdAt = entity.createdAt!!
         )
