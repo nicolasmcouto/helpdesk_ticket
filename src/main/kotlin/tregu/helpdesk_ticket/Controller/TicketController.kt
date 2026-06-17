@@ -5,25 +5,25 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import tregu.helpdesk_ticket.Workflow.CreateTicketWorkflow
 import tregu.helpdesk_ticket.Service.TicketService
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.Enum.TicketStatus
-import tregu.helpdesk_ticket.domain.dto.TicketDetail
-import tregu.helpdesk_ticket.domain.dto.UpdateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
+import tregu.helpdesk_ticket.Workflow.EscaleteWorkflow
+import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.Domain.Enum.TicketStatus
+import tregu.helpdesk_ticket.Domain.dto.*
 
 @RestController
 @RequestMapping("ticket")
 class TicketController(
     private val ticketService: TicketService,
-    private val ticketWorkflow: CreateTicketWorkflow
+    private val createTicketWorkflow: CreateTicketWorkflow,
+    private val escaleteWorkflow: EscaleteWorkflow
 ) {
 
     @PostMapping
     suspend fun createTicket(
         @RequestBody request: CreateTicketRequest, @RequestHeader("X-Author") author: String
     ): ResponseEntity<CreateTicketResponse> {
-        val response = ticketWorkflow.execute(request, author)
+
+        val response = createTicketWorkflow.execute(request, author)
         return ResponseEntity.status(HttpStatus.CREATED).body(response)
     }
 
@@ -54,5 +54,16 @@ class TicketController(
 
         val response = ticketService.ticketUpdate(id, updateTicketRequest)
         return ResponseEntity.ok(response)
+    }
+
+    @GetMapping("/stats")
+    suspend fun ticketStats(): ResponseEntity<TicketStatsResponse>{
+        val response = ticketService.getStats()
+        return ResponseEntity.ok(response)
+    }
+
+    @PatchMapping("/{ticketId}/escalete")
+    suspend fun Escalate(@PathVariable ticketId: Long): TicketDetail{
+        return escaleteWorkflow.execute(ticketId)
     }
 }

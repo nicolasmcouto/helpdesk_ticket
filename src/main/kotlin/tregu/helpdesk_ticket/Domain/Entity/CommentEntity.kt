@@ -1,9 +1,9 @@
-package tregu.helpdesk_ticket.domain.ticket.entity
+package tregu.helpdesk_ticket.Domain.ticket.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
-import tregu.helpdesk_ticket.domain.Entity.TicketEntity
+import tregu.helpdesk_ticket.Domain.Entity.TicketEntity
 import java.time.OffsetDateTime
 
 @Entity
@@ -16,7 +16,7 @@ class CommentEntity {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id", nullable = false)
-    var ticketId: TicketEntity? = null
+    var ticket: TicketEntity? = null
 
     @Column(nullable = false)
     var author: String = ""

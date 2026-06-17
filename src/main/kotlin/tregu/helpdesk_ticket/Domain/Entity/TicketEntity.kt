@@ -1,13 +1,12 @@
-package tregu.helpdesk_ticket.domain.Entity
+package tregu.helpdesk_ticket.Domain.Entity
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.Enum.TicketStatus
-import tregu.helpdesk_ticket.domain.ticket.entity.CommentEntity
+import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.Domain.Enum.TicketStatus
+import tregu.helpdesk_ticket.Domain.ticket.entity.CommentEntity
 import java.time.OffsetDateTime
-import java.time.OffsetTime
 
 
 @Entity

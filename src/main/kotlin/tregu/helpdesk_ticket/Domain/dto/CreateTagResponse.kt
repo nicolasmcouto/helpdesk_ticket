@@ -1,3 +1,3 @@
-package tregu.helpdesk_ticket.domain.dto
+package tregu.helpdesk_ticket.Domain.dto
 
 data class CreateTagResponse(val id:Long, val name: String)

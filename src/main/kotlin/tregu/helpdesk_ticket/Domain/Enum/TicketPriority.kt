@@ -1,4 +1,4 @@
-package tregu.helpdesk_ticket.domain.Enum
+package tregu.helpdesk_ticket.Domain.Enum
 
 enum class TicketPriority{
     LOW,

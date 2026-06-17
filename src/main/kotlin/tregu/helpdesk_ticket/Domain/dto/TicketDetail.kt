@@ -1,9 +1,9 @@
-package tregu.helpdesk_ticket.domain.dto
+package tregu.helpdesk_ticket.Domain.dto
 
-import tregu.helpdesk_ticket.domain.Entity.TagEntity
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.Enum.TicketStatus
-import tregu.helpdesk_ticket.domain.ticket.entity.CommentEntity
+import tregu.helpdesk_ticket.Domain.Entity.TagEntity
+import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.Domain.Enum.TicketStatus
+import tregu.helpdesk_ticket.Domain.ticket.entity.CommentEntity
 import java.time.OffsetDateTime
 
 data class TicketDetail(

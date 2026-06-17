@@ -1,7 +1,7 @@
-package tregu.helpdesk_ticket.domain.dto
+package tregu.helpdesk_ticket.Domain.dto
 
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.Enum.TicketStatus
+import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.Domain.Enum.TicketStatus
 
 data class UpdateTicketRequest(
     val status: TicketStatus? = null,

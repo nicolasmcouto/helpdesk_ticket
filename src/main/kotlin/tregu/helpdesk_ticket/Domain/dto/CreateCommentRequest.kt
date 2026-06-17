@@ -1,4 +1,4 @@
-package tregu.helpdesk_ticket.domain.dto
+package tregu.helpdesk_ticket.Domain.dto
 
 data class CreateCommentRequest(
    val ticketId: Long,

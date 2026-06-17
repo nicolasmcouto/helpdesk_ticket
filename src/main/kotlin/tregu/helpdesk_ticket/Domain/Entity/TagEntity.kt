@@ -1,4 +1,4 @@
-package tregu.helpdesk_ticket.domain.Entity
+package tregu.helpdesk_ticket.Domain.Entity
 
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp

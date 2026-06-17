@@ -1,16 +1,16 @@
-package tregu.helpdesk_ticket.domain.Mapper
+package tregu.helpdesk_ticket.Domain.Mapper
 
-import tregu.helpdesk_ticket.domain.Entity.TicketEntity
-import tregu.helpdesk_ticket.domain.dto.CommentResponse
-import tregu.helpdesk_ticket.domain.dto.CreateCommentRequest
-import tregu.helpdesk_ticket.domain.ticket.entity.CommentEntity
+import tregu.helpdesk_ticket.Domain.Entity.TicketEntity
+import tregu.helpdesk_ticket.Domain.dto.CommentResponse
+import tregu.helpdesk_ticket.Domain.dto.CreateCommentRequest
+import tregu.helpdesk_ticket.Domain.ticket.entity.CommentEntity
 
 object CommentMapper {
     fun toEntity(request: CreateCommentRequest, author: String, ticketId: TicketEntity): CommentEntity {
         val comment = CommentEntity()
         comment.content = request.content
         comment.author = author
-        comment.ticketId = ticketId
+        comment.ticket = ticketId
         return comment
     }
 
@@ -18,7 +18,7 @@ object CommentMapper {
         return CommentResponse(
             id = entity.id!!,
             content = entity.content,
-            ticketId = entity.ticketId?.id!!,
+            ticketId = entity.ticket?.id!!,
             author = entity.author,
             createdAt = entity.createdAt!!
         )

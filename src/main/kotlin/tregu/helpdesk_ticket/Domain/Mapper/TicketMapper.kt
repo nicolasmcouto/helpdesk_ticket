@@ -1,10 +1,10 @@
-package tregu.helpdesk_ticket.domain.Mapper
+package tregu.helpdesk_ticket.Domain.Mapper
 
-import tregu.helpdesk_ticket.domain.Entity.TicketEntity
-import tregu.helpdesk_ticket.domain.Enum.TicketPriority
-import tregu.helpdesk_ticket.domain.dto.TicketDetail
-import tregu.helpdesk_ticket.domain.dto.CreateTicketRequest
-import tregu.helpdesk_ticket.domain.dto.CreateTicketResponse
+import tregu.helpdesk_ticket.Domain.Entity.TicketEntity
+import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
+import tregu.helpdesk_ticket.Domain.dto.TicketDetail
+import tregu.helpdesk_ticket.Domain.dto.CreateTicketRequest
+import tregu.helpdesk_ticket.Domain.dto.CreateTicketResponse
 
 object TicketMapper {
 

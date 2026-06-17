@@ -1,6 +1,5 @@
-package tregu.helpdesk_ticket.domain.dto
+package tregu.helpdesk_ticket.Domain.dto
 
-import tregu.helpdesk_ticket.domain.Entity.TicketEntity
 import java.time.OffsetDateTime
 
 data class CommentResponse(
