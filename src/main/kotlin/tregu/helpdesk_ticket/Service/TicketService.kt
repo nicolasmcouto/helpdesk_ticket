@@ -38,7 +38,7 @@ class TicketService(
 
     suspend fun getTicketDetail(id: Long): TicketDetail? {
         return withContext(Dispatchers.IO) {
-            val ticket = ticketRepository.findById(id).orElse(null)
+            val ticket = ticketRepository.findById(id).orElse(null) ?: return@withContext null
             TicketMapper.toDetail(ticket)
 
         }
@@ -63,7 +63,7 @@ class TicketService(
 
     suspend fun ticketUpdate(id: Long, update: UpdateTicketRequest): TicketDetail? {
         return withContext(Dispatchers.IO) {
-            val ticket = ticketRepository.findById(id).orElse(null)
+            val ticket = ticketRepository.findById(id).orElse(null) ?: return@withContext null
 
             update.status?.let { ticket.status = it }
             update.priority?.let { ticket.priority = it }
@@ -111,7 +111,7 @@ class TicketService(
         return ticket!!
     }
 
-    suspend fun escalete(entity: TicketEntity, summary: String): TicketDetail {
+    suspend fun escalate(entity: TicketEntity, summary: String): TicketDetail {
         entity.escalated = true
         entity.escalatedAt = OffsetDateTime.now()
         entity.escalationSummary = summary

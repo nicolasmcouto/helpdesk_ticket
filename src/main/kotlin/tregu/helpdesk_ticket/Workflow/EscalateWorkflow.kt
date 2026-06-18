@@ -6,14 +6,13 @@ import tregu.helpdesk_ticket.Service.TicketService
 import tregu.helpdesk_ticket.Domain.dto.TicketDetail
 
 @Component
-class EscaleteWorkflow(
+class EscalateWorkflow(
     private val llmService: LlmService,
     private val ticketService: TicketService
 ) {
-    suspend fun execute(ticketId: Long): TicketDetail{
-       val ticket =  ticketService.findTicket(ticketId)
+    suspend fun execute(ticketId: Long): TicketDetail {
+        val ticket = ticketService.findTicket(ticketId)
         val summarizeMessage = llmService.summarize(ticket.title, ticket.description, ticket.status, ticket.createdAt!!)
-        return ticketService.escalete(ticket, summarizeMessage)
-
+        return ticketService.escalate(ticket, summarizeMessage)
     }
 }

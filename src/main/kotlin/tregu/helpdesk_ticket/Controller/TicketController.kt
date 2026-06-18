@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import tregu.helpdesk_ticket.Workflow.CreateTicketWorkflow
 import tregu.helpdesk_ticket.Service.TicketService
-import tregu.helpdesk_ticket.Workflow.EscaleteWorkflow
+import tregu.helpdesk_ticket.Workflow.EscalateWorkflow
 import tregu.helpdesk_ticket.Domain.Enum.TicketPriority
 import tregu.helpdesk_ticket.Domain.Enum.TicketStatus
 import tregu.helpdesk_ticket.Domain.dto.*
@@ -15,7 +15,7 @@ import tregu.helpdesk_ticket.Domain.dto.*
 class TicketController(
     private val ticketService: TicketService,
     private val createTicketWorkflow: CreateTicketWorkflow,
-    private val escaleteWorkflow: EscaleteWorkflow
+    private val escalateWorkflow: EscalateWorkflow
 ) {
 
     @PostMapping
@@ -62,8 +62,8 @@ class TicketController(
         return ResponseEntity.ok(response)
     }
 
-    @PatchMapping("/{ticketId}/escalete")
-    suspend fun Escalate(@PathVariable ticketId: Long): TicketDetail{
-        return escaleteWorkflow.execute(ticketId)
+    @PatchMapping("/{ticketId}/escalate")
+    suspend fun escalate(@PathVariable ticketId: Long): TicketDetail {
+        return escalateWorkflow.execute(ticketId)
     }
 }

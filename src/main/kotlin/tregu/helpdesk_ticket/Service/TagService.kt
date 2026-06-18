@@ -22,8 +22,8 @@ class TagService(
         return withContext(Dispatchers.IO) {
             val newTag = TagEntity()
             newTag.name = name
-            tagRepository.save(newTag)
-            TagMapper.toCreateResponse(newTag)
+            val saved = tagRepository.save(newTag)
+            TagMapper.toCreateResponse(saved)
         }
     }
 

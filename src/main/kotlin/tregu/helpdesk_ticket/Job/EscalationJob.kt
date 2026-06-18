@@ -4,16 +4,16 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import tregu.helpdesk_ticket.Service.TicketService
-import tregu.helpdesk_ticket.Workflow.EscaleteWorkflow
+import tregu.helpdesk_ticket.Workflow.EscalateWorkflow
 
 @Component
 class EscalationJob(
     private val ticketService: TicketService,
-    private val escaleteWorkflow: EscaleteWorkflow
+    private val escalateWorkflow: EscalateWorkflow
 ) {
     @Scheduled(fixedRate = 86400000)
-    fun escaleteTicket() = runBlocking {
+    fun escalateTickets() = runBlocking {
         val tickets = ticketService.findTicketsForEscalation()
-        tickets.forEach{ ticket -> escaleteWorkflow.execute(ticket.id!!)}
+        tickets.forEach { ticket -> escalateWorkflow.execute(ticket.id!!) }
     }
 }
